@@ -1,9 +1,9 @@
 const solve = input => {
-    let right = -3;
+    let p = -3;
     return input
         .filter(x => {
-            right += 3;
-            return x[right % x.length] === "#";
+            p += 3;
+            return x[p % x.length] === "#";
         })
         .length;
 };
