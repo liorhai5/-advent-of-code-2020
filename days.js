@@ -2,18 +2,15 @@ const {solve} = require('./common/solveUtils');
 
 const args = process.argv.slice(2);
 let days = Number(args[0]);
-let allChecksPassed = true;
+let failingTasks = 0;
 
 for (let i = 1; i <= days; i++) {
-    const task1 = solve(i, 1);
-    const task2 = solve(i, 2);
-    if (allChecksPassed) {
-        allChecksPassed = task1.check && task2.check;
-    }
+    failingTasks += solve(i, 1).check ? 0 : 1;
+    failingTasks += solve(i, 2).check ? 0 : 1;
 }
 
-if (allChecksPassed) {
-    console.log('ALL CHECKS PASS');
+if (failingTasks > 0) {
+    console.log(`\u274C  HAS ${failingTasks} FAILING CHECKS  \u274C `);
 } else {
-    console.log('HAS FAILING CHECKS');
+    console.log('\u2705  ALL CHECKS PASSED  \u2705 ');
 }

@@ -11,10 +11,7 @@ const solve = input => {
             s.c += x[i / s.y * s.x % x.length] === "#" ? 1 : 0;
         });
     });
-
     return slopes.reduce((acc, s) => acc * s.c, 1);
-
-
 };
 
 module.exports = {

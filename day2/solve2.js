@@ -1,6 +1,7 @@
 const solve = input => {
     return input
         .filter(x => {
+            if (!x) return false;
             const [pos1, pos2, char, pass] = x.split(/(\d*)-(\d*) (.): (.*)/).filter(Boolean);
             const char1 = pass[pos1 - 1];
             const char2 = pass[pos2 - 1];
