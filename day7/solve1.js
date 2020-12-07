@@ -17,13 +17,14 @@ const canContain = (matchColor, currentColor, map) => {
 
 const createMap = input => input
     .reduce((map, rule) => {
-        let [bag, contains] = rule.split(' contain ');
-        bag = bag.replace('bags', '').trim();
+        let [bag, contains] = rule
+            .replace(/\.|bags|bag/gi, '')
+            .split(' contain ');
+        bag = bag.trim();
         map[bag] = {};
         contains
             .split(',')
             .map(x => x
-                .replace(/\.|bags|bag/gi, '')
                 .trim()
                 .split(/(\d+)\s/)
                 .filter(Boolean)
