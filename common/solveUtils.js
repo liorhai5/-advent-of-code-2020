@@ -8,7 +8,7 @@ const solveUtils = (day, task, isExample) => {
         .replace(/\n+$/, '')
         .split('\n');
 
-    const result = solver.solve(text);
+    const result = solver.solve(text, isExample);
     const expected = isExample ? solver.exampleResult : solver.result;
     const check = expected === result;
     console.log(`${check ? '\u2705' : '\u274C'}  DAY ${day}, TASK ${task}`);
