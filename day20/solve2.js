@@ -10,7 +10,6 @@ const solve = input => {
     const image = stripped.flatMap(row =>
         row.reduce((combine, tile) => combine.map((line, i) => line + tile[i])),
     );
-    console.log(map)
 
     const count = allRotations(image)
         .map(x => countMonsters(x))
