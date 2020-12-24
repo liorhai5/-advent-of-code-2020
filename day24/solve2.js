@@ -11,6 +11,8 @@ const solve = input => {
 
 const toPos = id => id.split(',').map(x => parseInt(x, 10));
 
+const dirs = Object.values(posByDir);
+
 const day = tileMap => {
     const newTileMap = new Map();
     const visited = new Map();
@@ -22,12 +24,11 @@ const day = tileMap => {
     return newTileMap;
 };
 
-const getNeighbors = (xPos, yPos) => Object.values(posByDir).map(([x, y]) => toID(xPos + x, yPos + y));
+const getNeighbors = (xPos, yPos) => dirs.map(([x, y]) => toID(xPos + x, yPos + y));
 
 const flipIfNeeded = (id, neighbors, originalTileMap, newTileMap, visited) => {
-    const isBlack = originalTileMap.get(id) || false;
     const blackNeighbors = neighbors.map(nid => originalTileMap.get(nid) || false).filter(Boolean).length;
-    if (isBlack) {
+    if (originalTileMap.get(id) || false) {
         newTileMap.set(id, !(blackNeighbors === 0 || blackNeighbors > 2));
     } else {
         newTileMap.set(id, blackNeighbors === 2)
